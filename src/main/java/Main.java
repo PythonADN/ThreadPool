@@ -8,11 +8,11 @@ public class Main {
         pool.execute(getTask(1000, "Задача 1"));
         pool.execute(getTask(700, "Задача 2"));
         pool.execute(getTask(1000, "Задача 3"));
-        pool.execute(getTask(1000, "Задача 4"));
-        pool.execute(getTask(1000, "Задача 5"));
-        pool.execute(getTask(2000, "Задача 6"));
-        pool.execute(getTask(1000, "Задача 7"));
-        pool.execute(getTask(500, "Задача 8"));
+//        pool.execute(getTask(1000, "Задача 4"));
+//        pool.execute(getTask(1000, "Задача 5"));
+//        pool.execute(getTask(2000, "Задача 6"));
+//        pool.execute(getTask(1000, "Задача 7"));
+//        pool.execute(getTask(500, "Задача 8"));
 
         try {
             Thread.sleep(5000);
@@ -25,8 +25,8 @@ public class Main {
         pool.execute(getTask(300, "Задача 9"));
         pool.execute(getTask(200, "Задача 10"));
         pool.execute(getTask(300, "Задача 11"));
-        pool.execute(getTask(500, "Задача 12"));
-        pool.execute(getTask(300, "Задача 13"));
+//        pool.execute(getTask(500, "Задача 12"));
+//        pool.execute(getTask(300, "Задача 13"));
 
 
     }

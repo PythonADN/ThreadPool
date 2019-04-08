@@ -1,7 +1,7 @@
 public class PoolWorker extends Thread {
     private final ThreadPool threadPool;
     private boolean temporary; // тред временный
-    private Runnable task;
+    private Runnable task = null;
 
     public PoolWorker(String name, boolean temporary, ThreadPool threadPool) {
         super(name);

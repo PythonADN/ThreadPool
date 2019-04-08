@@ -58,7 +58,13 @@ public class ScalableThreadPool implements ThreadPool {
                         threadPool.notify();
                     }
                 }
-                yield();
+
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 synchronized (threadPool) {
                     if (threadPool.getQueueOfTasks().size() > 0) {
                         // нужно пробежаться по тредам и посмотреть есть ли свободные треды
@@ -71,7 +77,7 @@ public class ScalableThreadPool implements ThreadPool {
 
         private boolean notFindFreeThread() {
             for (int i = 0; i < minCount; i++) {
-                if (pool[i].getState().equals(State.WAITING) || pool[i].getState().equals(State.BLOCKED) || pool[i].getTask() == null)
+                if ( pool[i].getState().equals(State.WAITING) || pool[i].getState().equals(State.BLOCKED) || (pool[i].getState().equals(State.RUNNABLE) && pool[i].getTask() == null) )
                     return false; // какой-то основной спит, в ожидании монитора или пока не получил задачу (задач нет и новые ненужн)
             }
             return true;
@@ -81,7 +87,7 @@ public class ScalableThreadPool implements ThreadPool {
             for (int i = minCount; i < pool.length; i++) {
                 if (pool[i] == null) {
                     pool[i] = new PoolWorker("ДопТред-" + (i - minCount + 1), true, ScalableThreadPool.this);
-                    System.out.println(pool[i].getName()+" создан");
+                    System.out.println(pool[i].getName() + " создан");
                     pool[i].start();
                     return;
                 }
